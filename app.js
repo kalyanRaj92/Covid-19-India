@@ -191,4 +191,29 @@ app.get("/districts/:districtId/details/", async (request, response) => {
   );
 });
 
+/* app.get("/districts/:districtId/details/", async (request, response) => {
+  const { districtId } = request.params;
+  const getDistrictIdQuery = `
+    SELECT 
+        state_id 
+    FROM 
+        district
+    WHERE
+         district_id = ${districtId};`;
+  //With this we will get the state_id using district table
+  const getDistrictIdQueryResponse = await db.get(getDistrictIdQuery);
+
+  const getStateNameQuery = `
+    SELECT 
+        state_name as stateName 
+    FROM 
+        state
+    WHERE 
+        state_id = ${getDistrictIdQueryResponse.state_id};`;
+  //With this we will get state_name as stateName using the state_id
+  const getStateNameQueryResponse = await db.get(getStateNameQuery);
+  response.send(getStateNameQueryResponse); //sending the required response
+}); */
+
+
 module.exports = app;
